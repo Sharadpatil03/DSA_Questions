@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// void sortAndSplit(vector<int>& arr) {
+//     int n = arr.size();
+    
+//     // Sort the entire array
+//     sort(arr.begin(), arr.end());
+    
+//     // Reverse the second half of the array
+//     int mid = n / 2;
+//     reverse(arr.begin() + mid, arr.end());
+// }
+
+
+
+void sort(vector<int>& arr) {
+    int n = arr.size();
+    // bubble sort: after every iteration the max element goes to the end.
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    vector<int> arr = {5, 2, 4, 7, 9, 3, 1, 6, 8};
+    sort(arr); // Sort the entire array
+    int n = arr.size();
+
+    // Now we got the sorted array.
+    int mid = n / 2;
+
+    // Reverse the second half of the array (from mid to n-1)
+    int st = mid;
+    int ed = n - 1;
+
+    while (st < ed) {
+        int temp = arr[st];
+        arr[st] = arr[ed];
+        arr[ed] = temp;
+        st++;
+        ed--;
+    }
+
+    // Output the result
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
