@@ -1,0 +1,83 @@
+// You are given a linked list containing N nodes where each node is associated with 
+a certain value. Return a linked list as follows: If the input linked 
+list is 1-->2-->3-->4, then the 
+output should be 1-->4-->2-->3. And if the input is 1-->2-->3-->4-->5, then the
+output should be 1-->5-->2-->4-->3.
+
+// In other words, if the original linked list
+is first -> second -> third -> ……….->thirdlast -> secondlast -> last, then the
+modified linked list would be first -> last -> second -> second_last -> ...
+
+// You are given a linked list containing N nodes where each node is associated with a certain value. Return a linked list as follows: If the input linked list is 1-->2-->3-->4, then the output should be 1-->4-->2-->3. And if the input is 1-->2-->3-->4-->5, then the output should be 1-->5-->2-->4-->3.
+
+// In other words, if the original linked list is first -> second -> third -> ……….->thirdlast -> secondlast -> last, then the modified linked list would be first -> last -> second -> second_last -> ...
+
+// Note
+
+
+#include <bits/stdc++.h>
+/****************************************************************
+    Following is the class structure of the Node class:
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+	        this->data = data;
+	        this->next = NULL;
+        }
+    };
+*****************************************************************/
+
+Node* reverseList(Node* head) {
+    Node* prev = nullptr;
+    Node* current = head;
+
+    while (current != nullptr) {
+        Node* nextNode = current->next;
+        current->next = prev;
+        prev = current;
+        current = nextNode;
+    }
+    return prev;
+}
+
+Node* rearrangeList(Node* head) {
+    // Step 1: Base case: if list is empty or has only one node
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+
+    // Step 2: Find the middle of the linked list
+    Node* slow = head;
+    Node* fast = head->next;  // Start fast one step ahead
+
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    // Step 3: Split the list into two halves
+    Node* secondHalf = slow->next;  // Second half starts from slow->next
+    slow->next = nullptr;           // Terminate the first half
+
+    // Step 4: Reverse the second half
+    secondHalf = reverseList(secondHalf);
+
+    // Step 5: Merge the two halves alternately
+    Node* firstHalf = head;
+    while (firstHalf != nullptr && secondHalf != nullptr) {
+        Node* temp1 = firstHalf->next;
+        Node* temp2 = secondHalf->next;
+
+        firstHalf->next = secondHalf;  // Link first node from first half to one from second half
+        secondHalf->next = temp1;      // Link first node from second half to the next node in first half
+
+        firstHalf = temp1;             // Move to the next node in first half
+        secondHalf = temp2;            // Move to the next node in second half
+    }
+
+    return head;
+}
