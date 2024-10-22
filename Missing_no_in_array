@@ -1,0 +1,42 @@
+Input: arr[] = [1, 2, 3, 5]
+Output: 4
+Explanation: All the numbers from 1 to 5 are present except 4.
+
+
+
+class Solution {
+  public:
+    int missingNumber(vector<int>& arr) {
+        
+        // brute force:
+        // int n=arr.size();
+        //  vector<int> mp(n + 1, 0);  // create a vector of size n+1 initialized to 0
+        
+        // // Mark the presence of numbers in the array
+        // for (int i = 0; i < n; i++) {
+        //     if (arr[i] >= 0 && arr[i] <= n) { // ensure the index is within valid range
+        //         mp[arr[i]] = 1; // mark that the number is present
+        //     }
+        // }
+        
+        // // Find the missing number
+        // for (int i = 1; i <= n; i++) {
+        //     if (mp[i] == 0) {
+        //         return i; // this number is missing
+        //     }
+        // }
+        
+        // return -1; // if no number is missing
+        
+        // better sol:
+        int n = arr.size();
+        int s1 = n * (n + 1) / 2;  // Expected sum of numbers from 0 to n
+        int s2 = 0;  // Actual sum of numbers in the array
+        
+        for (int i = 0; i < n; i++) {
+            s2 += arr[i];  // Calculate the actual sum
+        }
+        
+        return abs(s1-s2);  // Return the difference (missing number)
+    }
+};
