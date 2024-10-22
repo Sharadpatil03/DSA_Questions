@@ -1,0 +1,38 @@
+Strong Numbers are the numbers whose sum of factorial of digits is equal to the original number. Given a number N, the task is to check if it is 
+a Strong Number or not. Print 1 if the Number is Strong, else Print 0.
+Example 1:
+
+Input:
+N = 145
+Output:
+1
+Explanation:
+1! + 4! + 5! = 145 So, 145 is a Strong
+Number and therefore the Output 1.
+
+
+class Solution {
+  public:
+  
+   int fact(int n){
+       if( n<=1){
+           return n;
+       }
+       
+       return n*fact(n-1);
+   }
+   
+    int isStrong(int N) {
+      
+      int original=N;
+      int sum=0;
+      while( N!=0){
+          int digit= N%10;
+          
+          sum+=fact(digit);
+          N=N/10;
+      }
+       
+      return original==sum; 
+    }
+};
