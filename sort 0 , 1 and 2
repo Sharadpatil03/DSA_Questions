@@ -1,0 +1,105 @@
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+
+
+#include <bits/stdc++.h>
+using namespace std;
+class Solution
+{
+public:
+    void sort012(vector<int> &arr)
+    {
+        // brute force apprach : tc: o(2n)
+        // int n=arr.size();
+        // int zeroCount=0, oneCount=0, twoCount=0;
+        // for(int i=0; i<arr.size(); i++){
+        //     if( arr[i]==0){
+        //         zeroCount++;
+
+        //     }
+        //     else if( arr[i]==1){
+        //         oneCount++;
+        //     }
+        //     else{
+        //         twoCount++;
+        //     }
+        // }
+
+        // for(int i=0; i<zeroCount; i++){
+        //     arr[i]=0;
+        // }
+        //  for(int i=zeroCount; i<oneCount+zeroCount; i++){
+        //     arr[i]=1;
+        // }
+
+        // for(int i=oneCount+zeroCount; i<n; i++){
+        //     arr[i]=2;
+        // }
+
+
+        // another apprach:3 pointer
+        // low , high, mid(for traversing)
+        // 0 to low-1   =>0
+        // low to high =>1
+        // high+1 to n-1  =>2
+        int n = arr.size();
+        int low = 0;
+        int mid = 0; // used for traversing
+        int high = n - 1;
+
+        while (low <= high)
+        {
+            if (arr[mid] == 0)
+            {
+                swap(arr[mid], arr[low]);
+                mid++;
+                low++;
+            }
+            else if (arr[mid] == 1)
+            {
+                mid++;
+            }
+
+            else
+            {
+                swap(arr[mid], arr[high]);
+                high--;
+            }
+        }
+    }
+};
+
+
+int main()
+{
+
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--)
+    {
+
+        vector<int> a;
+        string input;
+        int num;
+
+        getline(cin, input);
+        stringstream s2(input);
+        while (s2 >> num)
+        {
+            a.push_back(num);
+        }
+        Solution ob;
+        ob.sort012(a);
+
+        int n = a.size();
+        for (int i = 0; i < n; i++)
+        {
+            cout << a[i] << " ";
+        }
+
+        cout << endl;
+    }
+    return 0;
+}
+
