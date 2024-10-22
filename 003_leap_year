@@ -1,0 +1,26 @@
+Input:
+N = 4
+Output:
+1
+Explanation:
+4 is not divisible by 100
+and is divisible by 4 so its
+a leap year
+
+class Solution{
+public:
+    int isLeap(int N){
+        // Leap year check
+        if (N % 400 == 0) {
+            return true;  // Divisible by 400 -> Leap year
+        }
+        
+        if (N % 100 == 0) {
+            return false;  // Divisible by 100 but not by 400 -> Not a leap year
+        }
+        if (N % 4 == 0) {
+            return true;  // Divisible by 4 -> Leap year
+        }
+        return false;  // Not divisible by 4 -> Not a leap year
+    }
+};
