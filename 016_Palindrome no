@@ -1,0 +1,33 @@
+Given an integer, check whether it is a palindrome or not.
+
+Note : Strings which read the same backwards as forwards , eg - MADAM, MOM etc.
+
+Example 1:
+
+Input: n = 555
+Output: Yes
+
+
+
+class Solution
+{
+	public:
+		string is_palindrome(int n)
+		{
+		    
+		    int original=n;
+		    int temp=0;
+		    while(n!=0){
+		        int digit=n%10;
+		        temp=temp*10 + digit;
+		        n=n/10;
+		        
+		    }
+		    
+		    if( original==temp){
+		        return "Yes";
+		    }
+		    
+		    return "No";
+		}
+};
