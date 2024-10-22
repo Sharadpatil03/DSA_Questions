@@ -1,0 +1,64 @@
+Given the head of a linked list, the task is to reverse this list and return the reversed head.
+
+Examples:
+
+Input: Linked list: 1->2->3->4->5->6
+Output: 6->5->4->3->2->1
+
+/* Linked List Node structure:
+
+struct Node
+{
+    int data;
+    struct Node *next;
+}
+
+*/
+
+class Solution {
+  public:
+    // Function to reverse a linked list.
+    struct Node* reverseList(struct Node* head) {
+           
+        // brute force: using stack
+        // stack<int>st;
+        // Node* temp=head;
+        // while(temp!=nullptr){
+        //     st.push(temp->data);
+        //     temp=temp->next;
+        // }
+        
+        // // override the values into ll
+        
+        // temp=head;
+        // while(temp!=nullptr){
+        //     temp->data=st.top();
+        //     st.pop();
+        //     temp=temp->next;
+            
+        // }
+        // return head;
+        
+        
+        
+        // optimal sol:
+        // if(head==nullptr){
+        //     return head;
+        // }
+        
+        // Node* temp=head;
+        // Node* prev=nullptr;
+        
+        // while( temp!=nullptr){
+        //     Node* front=temp->next;
+            
+        //     temp->next=prev;
+        //     prev=temp;
+        //     temp=front;
+            
+        // }
+        
+        // return prev;
+        
+    }
+};
