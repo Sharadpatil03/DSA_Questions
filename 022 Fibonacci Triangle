@@ -1,0 +1,57 @@
+// print fibonaaci triangle
+// Enter the number of rows: 5
+
+// 1 
+// 1 2 
+// 3 5 8 
+// 13 21 34 55 
+// 89 144 233 377 610 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void fibonaaciTriangle(int n){
+    if( n<=0){
+        return;
+    }
+    
+     int prev2 = 1; // F(1)
+    int prev1 = 1; // F(2)
+    int current;   // Current Fibonacci number
+    int cnt = 0; // Count of Fibonacci numbers printed so far
+    
+    
+    for(int i=1; i<=n; i++){
+        
+        for(int j=1; j<=i; j++){
+            
+            if(cnt==0){
+                current=prev2;
+                // current=prev1;
+            }
+            else if(cnt==1){
+                current=prev1;
+                // current=prev2+prev1;
+            }
+            else{
+                current=prev2+ prev1;
+                prev2=prev1;
+                prev1=current;
+            }
+            cout<<current<<" ";
+            count++;
+        }
+        
+        cout<<endl; // next line
+    }
+    
+   
+    
+}
+
+int main() {
+   int n;
+   cin>>n;
+   fibonaaciTriangle(n);
+    return 0;
+}
