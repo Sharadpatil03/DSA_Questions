@@ -1,0 +1,36 @@
+Input: n = 8
+Output: true
+Explanation: 8 is equal to 2 raised to 3 (23 = 8).
+Input: n = 98
+Output: false
+Explanation: 98 cannot be obtained by any power of 2.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+  public:
+    // Function to check if given number n is a power of two.
+    bool isPowerofTwo(long long n) {
+
+        
+        
+        if(n==1){
+            return true;
+        }
+        
+        if( n==0 || n%2==1){
+            return false;
+        }
+        
+        while( n>1){
+           if( n%2==1){
+               return false;
+           }
+           n=n/2;
+        }
+        
+        return true;
+        
+    }
+};
