@@ -1,0 +1,40 @@
+Input: nums = [1,2,3,4,5,6,7], k = 3
+Output: [5,6,7,1,2,3,4]
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void reverseArray(vector<int>& arr, int low, int high) {
+    while (low < high) {
+        // Swap the elements
+        swap(arr[low], arr[high]);
+        low++;
+        high--;
+    }
+}
+
+vector<int> rotateArray(vector<int>& arr, int k) {
+    int n = arr.size();
+    
+    // Normalize k
+    k = k % n;
+    
+    // Reverse different parts of the array
+    reverseArray(arr, 0, k - 1);       // Reverse the first k elements
+    reverseArray(arr, k, n - 1);       // Reverse the rest of the array
+    reverseArray(arr, 0, n - 1);       // Reverse the entire array
+    
+    return arr;
+}
+
+int main() {
+    vector<int> arr = {1, 2, 3, 4, 5, 6};
+    int k = 2;
+
+    vector<int> ans = rotateArray(arr, k);
+    for (int i = 0; i < ans.size(); i++) { // Changed arr to ans to print the result
+        cout << ans[i] << " "; // Print the rotated array
+    }
+
+    return 0;
+}
