@@ -1,0 +1,32 @@
+You are given an array arr of positive integers. Your task is to find all the leaders in the array. An element is considered a leader if it is greater than or equal to all elements to its right. The rightmost element is always a leader.
+
+Examples:
+
+Input: arr = [16, 17, 4, 3, 5, 2]
+Output: [17, 5, 2]
+Explanation: Note that there is nothing greater on the right side of 17, 5 and, 2.
+
+class Solution {
+    // Function to find the leaders in the array.
+  public:
+    vector<int> leaders(vector<int>& arr) {
+       
+     int rightMax = INT_MIN; // Initialize rightMax to the minimum integer value
+       int n = arr.size(); // Get the size of the array
+       vector<int> ans; // Vector to store the leaders
+
+       // Traverse the array from right to left
+       for (int i = n - 1; i >= 0; i--) {
+           // If current element is greater than the maximum from the right
+           if (arr[i] >= rightMax) {
+               rightMax = arr[i]; // Update rightMax
+               ans.push_back(rightMax); // Add the current element as a leader
+           }
+       }
+
+       // Reverse the vector to get leaders in correct order
+       reverse(ans.begin(), ans.end());
+       return ans; // Return the vector of leaders
+       
+    }
+};
