@@ -1,0 +1,68 @@
+N = 4, K = 2
+Arr = [100, 200, 300, 400]
+Output:
+700
+Explanation:
+Arr3  + Arr4 =700,
+which is maximum.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxSumSubarray(vector<int>& arr, int n, int k) {
+    // Sliding window approach
+    int l = 0;
+    int r = k;
+    int maxSum = 0;
+    int sum = 0; // Initialize sum to 0
+
+    // Find the sum of the first window
+    for (int i = 0; i < k; i++) {
+        sum += arr[i];
+    }
+    
+    maxSum = sum; // Set maxSum to the sum of the first window
+
+    // Slide the window
+    while (r < n) {
+        sum -= arr[l]; // Remove the element at the start of the window
+        l++;
+        sum += arr[r]; // Add the element at the end of the window
+        r++;
+        
+        // Update maxSum if current window's sum is greater
+        if (sum > maxSum) {
+            maxSum = sum;
+        }
+    }
+    
+    return maxSum; // Return the final result
+}
+
+int main() {
+    vector<int> arr = {5, 2, 4, 7, 9, 3, 1, 6, 8};
+    int n = arr.size();
+    int k = 4;
+    cout << maxSumSubarray(arr, n, k) << endl; // Output the result
+
+    return 0;
+}
+
+ // brute force:
+    // int maxSum = 0;
+
+    // // Loop through each starting index for the subarray of size k
+    // for (int i = 0; i <= n - k; i++) { // Ensure we stay within bounds
+    //     int sum = 0; // Initialize sum for the current subarray
+    //     for (int j = 0; j < k; j++) { // Loop through the k elements
+    //         sum += arr[i + j]; // Correctly sum the subarray
+    //     }
+    //     // Update maxSum if the current sum is greater
+    //     if (sum > maxSum) {
+    //         maxSum = sum;
+    //0;
+    
+    // }
+    // return maxSum;
+    
