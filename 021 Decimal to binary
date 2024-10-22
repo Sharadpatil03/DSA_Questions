@@ -1,0 +1,24 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// decimal to binary
+// i/p: 10
+// o/p : 1010
+string decimalToBinary(int n){
+    string ans="";
+    while(n!=0){
+        int digit=n%2;
+        ans =to_string(digit) +ans;
+        n=n/2;
+    }
+    return ans;
+}
+
+int main() {
+    int n;
+    cin>>n;
+    cout<<decimalToBinary( n)<<endl;
+
+    return 0;
+}
