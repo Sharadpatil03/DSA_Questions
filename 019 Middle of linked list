@@ -1,0 +1,68 @@
+Input: head = [1,3,4,7,1,2,6]
+Output: [1,3,4,1,2,6]
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+
+        // optimal : use tortoise and hare method( slow and fast pointer), but remember need to stop before the mid element
+        if( head==nullptr || head->next==nullptr){
+               delete head;
+               return nullptr;
+        }
+
+        ListNode* slow=head;
+        ListNode*fast=head;
+        fast=head->next->next; // used to reach before the middle element.
+
+        while( fast!=nullptr && fast->next!=nullptr){
+            slow=slow->next;
+            fast=fast->next->next;
+
+        }
+
+        // reached before the mid
+        ListNode* temp=slow->next;
+        slow->next=slow->next->next;
+        delete temp;
+        return head;
+
+    }
+};
+
+
+        // brute force:
+        // int cnt=0;
+        // ListNode* temp=head;
+        // while(temp!=nullptr){
+        //     cnt++;
+        //     temp=temp->next;
+
+        // }
+
+        // int mid=(cnt /2)+1;
+
+        // temp=head;
+        // cnt=0;
+
+        // while(temp!=nullptr){
+        //     cnt++;
+            
+        //     if( cnt==mid-1){
+        //         ListNode* newNode=temp->next;
+        //         temp->next=temp->next->next;
+        //         delete newNode;
+        //     }
+        //     temp=temp->next;
+        // }
+        // return head;
