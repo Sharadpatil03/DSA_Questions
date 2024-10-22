@@ -1,0 +1,26 @@
+Example 1:
+Input: x = 4
+Output: 2
+Explanation: The square root of 4 is 2, so we return 2.
+
+class Solution {
+public:
+    int mySqrt(int x) {
+         // approach 1 :
+        long long s=0;
+        long long ans=0;
+        long long e=x;
+        while(s <=e){
+            long long m=(s+e)/2;
+            
+            if(m*m<=x){
+                ans=m;
+                s=m+1;
+            }
+            else{
+                e=m-1;
+            }
+        }
+        return ans;
+    }
+};
