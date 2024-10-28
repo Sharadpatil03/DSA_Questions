@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+// insertion sort: select the element and insert at its correct position.
+// for every element go to the left and swap till it can be swaped.(maintain the sorted order.)
+
+
+
+void insertionSort(int arr[], int n)
+{
+
+    bool didSwap = 0;
+    for (int i = 1; i <n ; i++)
+    {
+        int j = i;
+        while (j > 0 && arr[j - 1] > arr[j])
+        {
+            int temp = arr[j - 1];
+            arr[j - 1] = arr[j];
+            arr[j] = temp;
+            j--;
+            didSwap = 1;
+        }
+
+        // if(didSwap==0){
+        //     return ;
+        // }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+}
+
+int main()
+{
+    int arr[] = {2, 7, 3, 5, 0};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    insertionSort(arr, n);
+
+   
+
+    return 0;
+}
