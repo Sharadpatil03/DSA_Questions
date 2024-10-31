@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+// check if valid input gmail address ending with  "@gmail.com" practice
+
+
+bool isValidEmail(string st){
+    
+    // check length first is it enough "@gmail.com"
+    
+    string domain="@gmail.com";
+    int emailLen=st.length();
+    int domainLen=domain.length();
+    
+    if(emailLen<=domainLen){
+        return false;
+    }
+    
+    // check if the end of the email matches 
+    for(int i=0; i<domainLen; i++){
+        if(st[emailLen -domainLen + i]!=domain[i]){
+            return false;
+        }
+    }
+    // check that the part before "@gmail.com" is valid
+    for(int i=0; i<emailLen - domainLen ; i++){
+        char ch=st[i];
+        
+        if( (ch>='0' && ch<='9') || ch=='.' || ch=='%' || ch=='+' || ch=='-'){
+            return false;
+        }
+    }
+    return true;
+}
+int main() {
+  string st;
+  cin>>st;
+  cout<<isValidEmail( st)<<endl;
+
+    return 0;
+}
