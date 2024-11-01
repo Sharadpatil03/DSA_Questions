@@ -1,0 +1,33 @@
+#include <vector>
+using namespace std;
+
+class Solution {
+  public:
+    vector<int> mergeArrays(vector<int>& a, vector<int>& b) {
+        // Initialize the merged array with the total size of both arrays
+        vector<int> arr(a.size() + b.size());
+        
+        int aIdx = 0, bIdx = 0, index = 0;
+        
+        // Merge the two arrays
+        while (aIdx < a.size() && bIdx < b.size()) {
+            if (a[aIdx] < b[bIdx]) {
+                arr[index++] = a[aIdx++];
+            } else {
+                arr[index++] = b[bIdx++];
+            }
+        }
+        
+        // Add remaining elements from array a
+        while (aIdx < a.size()) {
+            arr[index++] = a[aIdx++];
+        }
+        
+        // Add remaining elements from array b
+        while (bIdx < b.size()) {
+            arr[index++] = b[bIdx++];
+        }
+        
+        return arr;
+    }
+};
