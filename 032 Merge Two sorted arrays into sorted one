@@ -31,3 +31,42 @@ class Solution {
         return arr;
     }
 };
+
+
+// Do without using extra space :
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    void mergeArrays(vector<int>& a, vector<int>& b) {
+        // The total size of both arrays
+        int n = a.size();
+        int m = b.size();
+        
+        // Resize vector a to accommodate both arrays
+        a.resize(n + m);
+        
+        // Indices for a and b
+        int aIdx = n - 1; // Last element of the original array a
+        int bIdx = m - 1; // Last element of array b
+        int mergeIdx = n + m - 1; // Last position in the merged array
+        
+        // Merge in reverse order
+        while (aIdx >= 0 && bIdx >= 0) {
+            if (a[aIdx] > b[bIdx]) {
+                a[mergeIdx--] = a[aIdx--];
+            } else {
+                a[mergeIdx--] = b[bIdx--];
+            }
+        }
+        
+        // If there are remaining elements in b, copy them
+        while (bIdx >= 0) {
+            a[mergeIdx--] = b[bIdx--];
+        }
+        
+        // No need to copy remaining elements of a, as they are already in place
+    }
+};
+
