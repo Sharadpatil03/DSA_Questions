@@ -1,0 +1,35 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+// Input: mat = [[1,2,3],
+//               [4,5,6],
+//               [7,8,9]]
+// Output: 25
+// Explanation: Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
+// Notice that element mat[1][1] = 5 is counted only once.
+
+int diagonalSum(vector<vector<int>>&mat){
+    
+    int n=mat.size();
+    int firstD=0;
+    int secondD=0;
+    for(int i=0; i<n; i++){
+        firstD+=mat[i][i];
+        secondD+=mat[i][n-i-1];
+    }
+    // if matrix size is odd, subtract the middle element
+    if(n%2==1){
+        firstD -=mat[n/2][n/2];
+    }
+    return firstD + secondD;
+}
+int main() {
+    
+vector<vector<int>>mat =
+{{1,2,3}, 
+{4,5,6},
+{7,8,9}};
+cout<< diagonalSum( mat);
+
+    return 0;
+}
