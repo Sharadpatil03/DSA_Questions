@@ -1,0 +1,36 @@
+Input: arr[] = [9, 0, 1, 3, 0]
+Output: 93100
+Explanation: Largest number is 93100 which can be formed from array digits.
+
+
+
+// Comparator function to determine the order of two strings
+bool compare(const string& a, const string& b) {
+    return a + b > b + a;
+}
+
+class Solution {
+public:
+    string MaxNumber(vector<int>& arr) {
+        // Convert integers to strings for custom sorting
+        vector<string> charArr;
+        for (int num : arr) {
+            charArr.push_back(to_string(num));
+        }
+
+        // Sort using the custom comparator function
+        sort(charArr.begin(), charArr.end(), compare);
+
+        // Check if the first element is "0", which means all elements are zero
+        if (charArr[0] == "0") {
+            return "0";
+        }
+
+        // Concatenate all strings to form the largest number
+        string ans = "";
+        for (const string& s : charArr) {
+            ans += s;
+        }
+        return ans;
+    }
+};
