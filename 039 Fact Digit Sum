@@ -1,0 +1,42 @@
+Problem statement
+Given a positive integer ‘N’. You need to find the smallest positive integer ‘X’ such that the sum of the factorial of its digit is equal to ‘N’.
+
+For Example:
+
+Consider ‘N’ = 7,  then ‘X’ =  13, because sum of factorial of its digits will be  1! + 3! = 1 + 6 = 7, and it is the smallest such integer.
+Note:
+1. ‘X’ may be large, so return it as a string.
+2. A ‘X’, for a positive integer ‘N’, always exists under given constraints.
+3. It is guaranteed that the number of digits in ‘X’ will not exceed 10^5.
+
+
+#include <bits/stdc++.h> 
+
+
+string factDigitSum(int N) {
+ 	
+  int factorials[10]={1,1,2,6,24,120,720,5040, 40320, 362880};
+
+  vector<int>digits;   // to store digits that will form the number x.
+
+  for(int i=9; i>=1; i--){
+	  //
+	  while(N>=factorials[i]){
+		  N = N- factorials[i];
+		  digits.push_back(i); 
+	  }
+  }
+
+  // sort the digits
+  sort(digits.begin(), digits.end());
+
+  // convert digits to string
+  string result;
+  for(int digit : digits){
+	  result+=to_string(digit);
+  }
+  return result;
+
+
+
+}
