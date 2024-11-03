@@ -1,0 +1,57 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int solution(vector<vector<int>>matrix, int n, vector<string>cd){
+    int row=0;
+    int col=0;
+    
+    for(int c=0; c<cd.size(); c++){
+        
+        if(cd[c]=="Right"){
+            if(col < n-1){
+                col++;
+            }
+        }
+        else if(cd[c]=="left"){
+            if(col > 0){
+                col--;
+            }
+        }
+        else if(cd[c]=="Up"){
+            if(row > 0){
+                row--;
+            }
+        }
+        else if(cd[c]=="Down"){
+            // down
+            if( row < n-1){
+                row++;
+            }
+            
+        }
+        
+    }
+    return matrix[row][col];
+}
+
+int main() {
+// 
+// Input:
+// n = 4
+// commands = {"RIGHT", "UP", "DOWN", "LEFT", "DOWN", "DOWN"}
+vector<vector<int>>matrix= {
+    {0,1,2,3},
+    {4,5,6,7},
+    {8,9,10,11},
+    {12,15,14,15}
+};
+int n=4;
+vector<string>commands={"Right", "Up", "Down", "left", "Down", "Down"};
+
+int result = solution( matrix, n, commands);
+cout<<result;
+
+    return 0;
+}
