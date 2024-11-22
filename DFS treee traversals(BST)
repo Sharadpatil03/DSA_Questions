@@ -1,0 +1,90 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+    
+    Node(int x){
+        this->data=x;
+        left=nullptr;
+        right=nullptr;
+    }
+};
+
+Node *insert( Node*root, int data){
+    if(root==nullptr){
+        return new Node(data);
+    }
+    
+    //rec down the tree
+    
+    if(data< root->data){
+        root->left = insert(root->left, data);
+    }
+    else if(data> root->data){
+        root->right=insert(root->right, data);
+    }
+    return root;
+}
+
+void inorder(Node* root){
+    // base condition
+    if(root==nullptr){
+        return ;
+    }
+    
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+
+void preorder(Node* root){
+    // base condition
+    if(root==nullptr){
+        return ;
+    }
+    cout<<root->data<<" ";
+    inorder(root->left);
+    inorder(root->right);
+}
+
+void postorder(Node* root){
+    // base condition
+    if(root==nullptr){
+        return ;
+    }
+    
+    inorder(root->left);
+    inorder(root->right);
+    cout<<root->data<<" ";
+}
+
+
+
+int main() {
+   Node* root=nullptr;
+   root=insert(root, 50);
+    root = insert(root, 30);
+    root = insert(root, 20);
+    root = insert(root, 40);
+    root = insert(root, 70);
+    root = insert(root, 60);
+    root = insert(root, 80);
+    
+    cout<<"inorder traversal :";
+    inorder(root);
+    cout<<endl;
+    
+    cout<<"preorder traversal :";
+    preorder(root);
+    cout<<endl;
+    
+    cout<<"postorder traversal :";
+    postorder(root);
+    cout<<endl;
+
+
+    return 0;
+}
