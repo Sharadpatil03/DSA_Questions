@@ -1,0 +1,45 @@
+
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+
+
+
+class Solution {
+public:
+    
+    string reverseWords(string s) {
+        stack<string>words;
+        string word;
+       // Split words and push them onto the stack
+        for(char ch : s){
+
+            if(ch ==' '){
+                if(!word.empty()){
+                    words.push(word);
+                    word.clear();
+                }
+            }
+            else{
+              word+=ch;
+            }   
+        }
+
+        //for last word
+        if(!word.empty()){
+            words.push(word);
+        }
+
+        string result;
+        while(!words.empty()){
+            result+=words.top();
+            words.pop();
+
+            if(!words.empty()){ // Add space between words
+                result+=' ';
+            }
+        }
+
+        return result;
+
+    }
+};
