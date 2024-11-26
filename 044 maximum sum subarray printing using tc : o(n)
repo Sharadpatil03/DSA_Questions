@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxSumSubarray(vector<int> arr, int n) {
+    int maxSum = INT_MIN; // Initialize maximum sum
+    int currSum = 0;      // Initialize current sum
+    int start = 0, end = 0, tempStart = 0; // Indices to track the subarray
+
+    for (int i = 0; i < n; i++) {
+        currSum += arr[i];
+
+        // Update maxSum and the indices of the subarray
+        if (currSum > maxSum) {
+            maxSum = currSum;
+            start = tempStart;
+            end = i;
+        }
+
+        // Reset current sum and tempStart index if currSum goes negative
+        if (currSum < 0) {
+            currSum = 0;
+            tempStart = i + 1;
+        }
+    }
+
+    // Print the subarray
+    cout << "Maximum sum subarray: ";
+    for (int i = start; i <= end; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return maxSum;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    cout << "Maximum sum: " << maxSumSubarray(arr, n) << endl;
+
+    return 0;
+}
